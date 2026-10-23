@@ -61,6 +61,32 @@ body {
     white-space: nowrap;
 }
 
+/* === Siden finnes ikke === */
+.brand-note {
+    margin: .6rem 0 0;
+    font-weight: 400;
+    font-size: clamp(1rem, 2.6vw, 1.2rem);
+    letter-spacing: .08em;
+    opacity: .75;
+}
+
+.brand-link {
+    color: var(--gold);
+    font-size: .95rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: .15em;
+}
+
+.brand-link:hover { opacity: .8; }
+
+.brand-link:focus-visible {
+    outline: 1px solid var(--gold);
+    outline-offset: 4px;
+}
+
 @keyframes brand-in {
     from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: none; }

@@ -15,15 +15,17 @@ Nettsiden **https://corinthian.no**. Jan Thore kjøpte domenet fordi han liker n
 - Siden før denne var svart med «CORINTHIAN» i en seriff mellom to tynne, grå streker.
 
 ## Fremdrift
-- [ ] Første versjon: forside med logo og navn (bygget 23.10.2026, PR #1). Plesk er koblet til repoet 23.10.2026. Logoen er ikke endelig valgt.
+- [x] Første versjon: forside med logo og navn (PR #1), **i drift på corinthian.no fra 23.10.2026**. Document root `<domenemappe>/public`.
+- [ ] Egen «Siden finnes ikke» for andre adresser enn `/` (før viste de forsiden med status 404).
+- [ ] Endelig logo. Åpent spørsmål: toppen av søylen i A1 ser ut som et rundbuet vindu (gullbuen med strek i midten). Beholde det, eller tegne blader som buer utover?
 
 ## Beslutninger
 - Ren PHP (8.2+) uten rammeverk og uten byggesteg. Ingen database ennå; MariaDB kan kobles på via `config/config.php` senere.
 - Bare `public/` er synlig på nett (document root `<domenemappe>/public`, f.eks. `httpdocs/public`). Ingen `.htaccess` i rotmappen; `config/` har egen sperre. `DirectoryIndex index.php` i `public/.htaccess` fordi Plesk lager en egen `index.html`.
-- `index.php` sender sikkerhetsoverskrifter (CSP uten skript og uten eksterne kilder) og gir 404 på alle andre adresser enn `/`.
+- `index.php` sender sikkerhetsoverskrifter (CSP uten skript og uten eksterne kilder) og gir 404 på alle andre adresser enn `/`, med logo, «Siden finnes ikke» og en lenke til forsiden.
 - `apple-touch-icon` ligger inne i siden som data:-adresse, slik som på Huskdagen (iPhone hentet ellers ikke ikonet riktig).
 - Arbeidsflyt: Claude pusher til en arbeidsgren og lager en pull request. Jan Thore fletter inn i `main`, og Plesk henter koden automatisk.
 
 ## Hosting – ServeTheWorld med Plesk
 - Ingen SSH og ingen Node.js på serveren. Alt som kjører der må være PHP, og alt må ligge ferdig i repoet.
-- Publisering: **offentlig** GitHub-repo `jtk-no/corinthian` → **Git i Plesk** (grenen `main`) over HTTPS uten innlogging (23.10.2026). Repoet må derfor aldri inneholde hemmeligheter. SSH virket ikke (webhotellets ene SSH-nøkkel er allerede deploy key for Huskdagen, og GitHub tillater én deploy key per repo), og HTTPS med token virket ikke (Plesk: `pass-from-env.sh: Permission denied`). Hvis ServeTheWorld retter det, kan repoet gjøres privat igjen med en fine-grained token (bare lesetilgang).
+- Publisering: **offentlig** GitHub-repo `jtk-no/corinthian` → **Git i Plesk** (grenen `main`) over HTTPS uten innlogging (23.10.2026). Repoet må derfor aldri inneholde hemmeligheter. SSH virket ikke (webhotellets ene SSH-nøkkel er allerede deploy key for Huskdagen, og GitHub tillater én deploy key per repo), og HTTPS med token virket ikke (Plesk: `pass-from-env.sh: Permission denied`). Hvis ServeTheWorld retter det, kan repoet gjøres privat igjen med en fine-grained token (bare lesetilgang). Jan Thore vil gjøre repoet privat igjen når siden er ferdig; da kan Plesk ikke hente ny kode før repoet gjøres offentlig igjen (eller feilen er rettet).

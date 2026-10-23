@@ -55,7 +55,13 @@ $touchIconData = is_file($touchIcon) ? 'data:image/png;base64,' . base64_encode(
     <main class="brand">
         <img class="brand-mark" src="<?= $asset('/assets/img/logo-mark.svg') ?>" alt="" width="64" height="72">
         <span class="brand-rule" aria-hidden="true"></span>
+<?php if ($notFound): ?>
+        <p class="brand-name">Corinthian</p>
+        <h1 class="brand-note">Siden finnes ikke</h1>
+        <a class="brand-link" href="/">Til forsiden</a>
+<?php else: ?>
         <h1 class="brand-name">Corinthian</h1>
+<?php endif; ?>
     </main>
 </body>
 </html>
