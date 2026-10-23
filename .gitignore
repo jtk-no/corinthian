@@ -1,0 +1,15 @@
+# --- Hemmeligheter: skal ALDRI i Git ---
+/config/config.php
+/config/*.local.php
+.env
+.env.*
+*.pem
+*.key
+
+# --- Lokale filer ---
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
