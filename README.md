@@ -50,6 +50,17 @@ Siden virker uten. Vil du ha riktig adresse når siden deles, kopier `config/con
 
 Ny kode legges i en pull request på GitHub. Når den flettes inn i `main`, henter Plesk koden automatisk. Ellers trykker du *Pull now* under *Git*.
 
+### Når repoet er privat
+
+Plesk henter uten innlogging, så *Pull now* feiler med «Repository not found» mens repoet er privat. Siden på nett lever videre som den er.
+
+Slik legger du ut en ny versjon:
+1. GitHub → repoet → *Settings* → helt nederst *Change visibility* → *Make public*.
+2. Plesk → corinthian.no → *Git* → *Pull now*. Sjekk https://corinthian.no.
+3. GitHub → *Settings* → *Change visibility* → *Make private*.
+
+Varig løsning: ServeTheWorld retter `pass-from-env.sh: Permission denied` i Git-utvidelsen i Plesk. Da kan Plesk hente det private repoet med en fine-grained token (bare lesetilgang til `jtk-no/corinthian`), og *Pull now* og webhook virker som før.
+
 ## Database senere
 
 Trengs det database, lages en MariaDB/MySQL-database i Plesk (*Databases* → *Add Database*), og tilkoblingen fylles inn under `db` i `config/config.php`. Passord skal aldri i Git.
