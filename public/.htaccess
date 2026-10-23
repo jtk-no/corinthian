@@ -1,0 +1,37 @@
+# Bruk alltid sidens index.php (Plesk kan legge en egen index.html her)
+DirectoryIndex index.php
+
+# Alle adresser som ikke er en ekte fil, sendes til index.php (som gir 404)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Ikke vis innholdet i mapper
+Options -Indexes
+
+# Tving HTTPS-bruk i nettleseren i ett år etter første besøk
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000" env=HTTPS
+</IfModule>
+
+# Komprimer tekst (HTML, stilark, SVG)
+# (AddOutputFilterByType krever både mod_deflate og mod_filter; uten dem hoppes dette over)
+<IfModule mod_deflate.c>
+    <IfModule mod_filter.c>
+        AddOutputFilterByType DEFLATE text/html text/plain text/css image/svg+xml
+    </IfModule>
+</IfModule>
+
+# Nettleseren husker stilark i 7 dager (siden bruker ?v=… i adressen, så nye versjoner
+# hentes med en gang), og skrift og bilder i 30 dager.
+<IfModule mod_headers.c>
+    <FilesMatch "\.css$">
+        Header set Cache-Control "public, max-age=604800"
+    </FilesMatch>
+    <FilesMatch "\.(woff2|png|svg|ico)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+</IfModule>

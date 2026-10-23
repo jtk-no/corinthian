@@ -1,0 +1,71 @@
+/* === Grunnlag === */
+@font-face {
+    font-family: "Marcellus";
+    src: url("../fonts/marcellus.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --night: #14232A;   /* bunn */
+    --marble: #F4F5F2;  /* linjer og tekst */
+    --gold: #D2A066;    /* én detalj */
+    --display: "Marcellus", "Trajan Pro", Georgia, serif;
+    color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+    margin: 0;
+    background: var(--night);
+    color: var(--marble);
+    font-family: var(--display);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* === Forsiden === */
+.brand {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.1rem, 3vw, 1.6rem);
+    padding: max(2rem, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(2rem, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    animation: brand-in 1.4s ease-out both;
+}
+
+.brand-mark {
+    width: clamp(88px, 16vw, 140px);
+    height: auto;
+}
+
+.brand-rule {
+    width: clamp(2rem, 5vw, 3rem);
+    height: 1px;
+    background: var(--gold);
+}
+
+.brand-name {
+    margin: 0;
+    font-weight: 400;
+    font-size: clamp(1.6rem, 6vw, 3rem);
+    line-height: 1;
+    letter-spacing: .22em;
+    padding-left: .22em; /* veier opp for sperringen etter siste bokstav, så navnet står midt på */
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+@keyframes brand-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .brand { animation: none; }
+}
