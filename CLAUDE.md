@@ -11,13 +11,13 @@ Nettsiden **https://corinthian.no**. Jan Thore kjøpte domenet fordi han liker n
 - **Corinthian for Jan Thore:** høye søyler, moderne og elegant på samme tid. Navnet kommer fra et utested i Glasgow rundt 2005, men det er bare bakgrunn: **designet skal ikke bygge på bygningen i Glasgow.**
 - **Farger:** nattblå `#14232A` (bunn), marmorhvit `#F4F5F2` (linjer og tekst), gull `#D2A066` (én detalj). Variablene står øverst i `public/assets/css/site.css`.
 - **Skrift:** Marcellus, lagt på egen server (`public/assets/fonts/`), ikke hentet fra Google Fonts.
-- **Logo:** midlertidig er variant A1 fra logovalget (søyle med kapitél, gull i de innerste bladene) i `public/assets/img/logo-mark.svg` og `public/favicon.svg`. Ikke endelig valgt. Når logoen endres, lages `public/apple-touch-icon.png` (180 × 180) på nytt fra `favicon.svg`.
+- **Logo:** variant **V1** fra logovalget (runde 4, valgt 23.10.2026): samme søyle, plate og spiraler som A1, men toppen er to rader akantusblader (tre hvite nederst, to i gull bak) med tynne stilker opp til spiralene, i stedet for buen som så ut som et vindu. Ligger i `public/assets/img/logo-mark.svg` og `public/favicon.svg` (favicon med tykkere streker). Når logoen endres, lages `public/apple-touch-icon.png` (180 × 180) på nytt fra `favicon.svg`.
 - Siden før denne var svart med «CORINTHIAN» i en seriff mellom to tynne, grå streker.
 
 ## Fremdrift
 - [x] Første versjon: forside med logo og navn (PR #1), **i drift på corinthian.no fra 23.10.2026**. Document root `<domenemappe>/public`.
-- [ ] Egen «Siden finnes ikke» for andre adresser enn `/` (før viste de forsiden med status 404).
-- [ ] Endelig logo. Åpent spørsmål: toppen av søylen i A1 ser ut som et rundbuet vindu (gullbuen med strek i midten). Beholde det, eller tegne blader som buer utover?
+- [x] Egen «Siden finnes ikke» for andre adresser enn `/` (før viste de forsiden med status 404).
+- [x] Logo V1 (blader i stedet for «vinduet» øverst i søylen), 23.10.2026.
 
 ## Beslutninger
 - Ren PHP (8.2+) uten rammeverk og uten byggesteg. Ingen database ennå; MariaDB kan kobles på via `config/config.php` senere.
