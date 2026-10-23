@@ -15,7 +15,7 @@ Nettsiden **https://corinthian.no**. Jan Thore kjøpte domenet fordi han liker n
 - Siden før denne var svart med «CORINTHIAN» i en seriff mellom to tynne, grå streker.
 
 ## Fremdrift
-- [ ] Første versjon: forside med logo og navn (bygget 23.10.2026, venter på at Claude får tilgang til repoet og på endelig logo).
+- [ ] Første versjon: forside med logo og navn (bygget 23.10.2026, PR #1). Plesk er koblet til repoet 23.10.2026. Logoen er ikke endelig valgt.
 
 ## Beslutninger
 - Ren PHP (8.2+) uten rammeverk og uten byggesteg. Ingen database ennå; MariaDB kan kobles på via `config/config.php` senere.
@@ -26,4 +26,4 @@ Nettsiden **https://corinthian.no**. Jan Thore kjøpte domenet fordi han liker n
 
 ## Hosting – ServeTheWorld med Plesk
 - Ingen SSH og ingen Node.js på serveren. Alt som kjører der må være PHP, og alt må ligge ferdig i repoet.
-- Publisering: privat GitHub-repo `jtk-no/corinthian` → **Git i Plesk** (grenen `main`) over **HTTPS med en fine-grained token** (bare lesetilgang til dette repoet), ikke SSH. Webhotellet har én SSH-nøkkel for alle domenene, og den er allerede deploy key for Huskdagen; GitHub tillater én deploy key per repo. Tokenet har utløpsdato og byttes i Plesk under *Repository Settings* (se README).
+- Publisering: **offentlig** GitHub-repo `jtk-no/corinthian` → **Git i Plesk** (grenen `main`) over HTTPS uten innlogging (23.10.2026). Repoet må derfor aldri inneholde hemmeligheter. SSH virket ikke (webhotellets ene SSH-nøkkel er allerede deploy key for Huskdagen, og GitHub tillater én deploy key per repo), og HTTPS med token virket ikke (Plesk: `pass-from-env.sh: Permission denied`). Hvis ServeTheWorld retter det, kan repoet gjøres privat igjen med en fine-grained token (bare lesetilgang).

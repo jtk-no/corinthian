@@ -27,22 +27,16 @@ php -S localhost:8000 -t public bin/dev-router.php
 1. *Websites & Domains* → corinthian.no → *Hosting Settings*: PHP 8.2 eller nyere.
 2. *SSL/TLS Certificates*: slå på Let's Encrypt for `corinthian.no` og `www.corinthian.no`.
 
-**2. Git (med token, ikke SSH-nøkkel)**
+**2. Git (offentlig repo over HTTPS, uten innlogging)**
 
-Webhotellet deler én SSH-nøkkel mellom alle domenene, og den er allerede deploy key for Huskdagen. GitHub tillater én deploy key per repo, så Plesk henter Corinthian med HTTPS og en token (en tilgangsnøkkel som virker som et passord) i stedet.
+Repoet er **offentlig**. Det inneholder bare forsiden; passord og nøkler skal aldri i Git uansett.
+SSH-nøkkel og token virket ikke på webhotellet: webhotellet har én SSH-nøkkel for alle domenene, og den er allerede deploy key for Huskdagen (GitHub tillater én deploy key per repo), og Plesk kan ikke sende passord/token over HTTPS (`pass-from-env.sh: Permission denied`, 23.10.2026).
 
-1. GitHub → profilbildet → *Settings* → *Developer settings* → *Personal access tokens* → *Fine-grained tokens* → *Generate new token*.
-   - *Repository access*: *Only select repositories* → `jtk-no/corinthian`.
-   - *Permissions* → *Contents*: *Read-only*.
-   - Velg en utløpsdato og skriv den ned. Tokenet må fornyes da (se under).
-2. Kopier tokenet. Det vises bare én gang, og skal aldri i Git, README eller e-post.
-3. Plesk → domenet → *Git* → *Add Repository* → *Remote Git hosting*.
-4. Adresse: `https://github.com/jtk-no/corinthian.git`. Brukernavn: GitHub-brukernavnet ditt. Passord: tokenet.
-5. *Deployment path*: domenemappen (den som var document root før, f.eks. `httpdocs`). Gren: `main`. *Automatic deployment*.
-6. Klikk *Create* / *Pull now*.
-7. For automatisk henting når `main` endres: åpne repoet i Plesk → *Repository Settings* og kopier *Webhook URL*. GitHub → repoet → *Settings* → *Webhooks* → *Add webhook*: lim inn adressen, *Content type* `application/json`, bare *push*-hendelser. Uten webhook trykker du *Pull now* etter hver fletting.
-
-**Når tokenet går ut:** lag et nytt token som i steg 1–2, og bytt passordet under *Repository Settings* for repoet i Plesk.
+1. Plesk → domenet → *Git* → *Add Repository* → *Remote Git hosting*.
+2. Adresse: `https://github.com/jtk-no/corinthian.git`. La brukernavn og passord stå tomme.
+3. *Deployment path*: domenemappen (den som var document root før, f.eks. `httpdocs`). Gren: `main`. *Automatic deployment*.
+4. Klikk *Create* / *Pull now*.
+5. For automatisk henting når `main` endres: åpne repoet i Plesk → *Repository Settings* og kopier *Webhook URL*. GitHub → repoet → *Settings* → *Webhooks* → *Add webhook*: lim inn adressen, *Content type* `application/json`, *Just the push event*. Uten webhook trykker du *Pull now* etter hver fletting.
 
 **3. Document root**
 1. *Hosting Settings*: sett *Document root* til domenemappen + `/public`, f.eks. `httpdocs/public`.
