@@ -19,11 +19,11 @@ Nettsiden **https://corinthian.no**. Jan Thore kjøpte domenet fordi han liker n
 
 ## Beslutninger
 - Ren PHP (8.2+) uten rammeverk og uten byggesteg. Ingen database ennå; MariaDB kan kobles på via `config/config.php` senere.
-- Bare `public/` er synlig på nett (document root `corinthian.no/public`). Ingen `.htaccess` i rotmappen; `config/` har egen sperre. `DirectoryIndex index.php` i `public/.htaccess` fordi Plesk lager en egen `index.html`.
+- Bare `public/` er synlig på nett (document root `<domenemappe>/public`, f.eks. `httpdocs/public`). Ingen `.htaccess` i rotmappen; `config/` har egen sperre. `DirectoryIndex index.php` i `public/.htaccess` fordi Plesk lager en egen `index.html`.
 - `index.php` sender sikkerhetsoverskrifter (CSP uten skript og uten eksterne kilder) og gir 404 på alle andre adresser enn `/`.
 - `apple-touch-icon` ligger inne i siden som data:-adresse, slik som på Huskdagen (iPhone hentet ellers ikke ikonet riktig).
 - Arbeidsflyt: Claude pusher til en arbeidsgren og lager en pull request. Jan Thore fletter inn i `main`, og Plesk henter koden automatisk.
 
 ## Hosting – ServeTheWorld med Plesk
 - Ingen SSH og ingen Node.js på serveren. Alt som kjører der må være PHP, og alt må ligge ferdig i repoet.
-- Publisering: privat GitHub-repo `jtk-no/corinthian` → **Git i Plesk** (grenen `main`).
+- Publisering: privat GitHub-repo `jtk-no/corinthian` → **Git i Plesk** (grenen `main`) over **HTTPS med en fine-grained token** (bare lesetilgang til dette repoet), ikke SSH. Webhotellet har én SSH-nøkkel for alle domenene, og den er allerede deploy key for Huskdagen; GitHub tillater én deploy key per repo. Tokenet har utløpsdato og byttes i Plesk under *Repository Settings* (se README).

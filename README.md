@@ -27,21 +27,27 @@ php -S localhost:8000 -t public bin/dev-router.php
 1. *Websites & Domains* → corinthian.no → *Hosting Settings*: PHP 8.2 eller nyere.
 2. *SSL/TLS Certificates*: slå på Let's Encrypt for `corinthian.no` og `www.corinthian.no`.
 
-**2. Git**
-1. Gå til domenet → *Git* → *Add Repository* → *Remote Git hosting*.
-2. Lim inn SSH-adressen til repoet: `git@github.com:jtk-no/corinthian.git`.
-3. Plesk viser en **SSH-nøkkel**. Kopier den.
-4. Åpne GitHub → repoet → *Settings* → *Deploy keys* → *Add deploy key*. Lim inn nøkkelen og lagre. Ikke huk av for skrivetilgang.
-5. Tilbake i Plesk:
-   - Sett *Deployment path* til domenemappen, `corinthian.no`.
-   - Velg grenen `main`.
-   - Velg *Automatic deployment*.
+**2. Git (med token, ikke SSH-nøkkel)**
+
+Webhotellet deler én SSH-nøkkel mellom alle domenene, og den er allerede deploy key for Huskdagen. GitHub tillater én deploy key per repo, så Plesk henter Corinthian med HTTPS og en token (en tilgangsnøkkel som virker som et passord) i stedet.
+
+1. GitHub → profilbildet → *Settings* → *Developer settings* → *Personal access tokens* → *Fine-grained tokens* → *Generate new token*.
+   - *Repository access*: *Only select repositories* → `jtk-no/corinthian`.
+   - *Permissions* → *Contents*: *Read-only*.
+   - Velg en utløpsdato og skriv den ned. Tokenet må fornyes da (se under).
+2. Kopier tokenet. Det vises bare én gang, og skal aldri i Git, README eller e-post.
+3. Plesk → domenet → *Git* → *Add Repository* → *Remote Git hosting*.
+4. Adresse: `https://github.com/jtk-no/corinthian.git`. Brukernavn: GitHub-brukernavnet ditt. Passord: tokenet.
+5. *Deployment path*: domenemappen (den som var document root før, f.eks. `httpdocs`). Gren: `main`. *Automatic deployment*.
 6. Klikk *Create* / *Pull now*.
+7. For automatisk henting når `main` endres: åpne repoet i Plesk → *Repository Settings* og kopier *Webhook URL*. GitHub → repoet → *Settings* → *Webhooks* → *Add webhook*: lim inn adressen, *Content type* `application/json`, bare *push*-hendelser. Uten webhook trykker du *Pull now* etter hver fletting.
+
+**Når tokenet går ut:** lag et nytt token som i steg 1–2, og bytt passordet under *Repository Settings* for repoet i Plesk.
 
 **3. Document root**
-1. *Hosting Settings*: sett *Document root* til `corinthian.no/public`.
-2. Gå til *Files* → `corinthian.no/public/`. Slett `index.html` hvis Plesk har laget den.
-3. Gamle filer fra den forrige siden som ligger direkte i `corinthian.no/` (f.eks. `index.html`) kan slettes eller flyttes når den nye siden virker.
+1. *Hosting Settings*: sett *Document root* til domenemappen + `/public`, f.eks. `httpdocs/public`.
+2. Gå til *Files* → `httpdocs/public/`. Slett `index.html` hvis Plesk har laget den.
+3. Gamle filer fra den forrige siden som ligger direkte i domenemappen (f.eks. `index.html`) kan slettes eller flyttes når den nye siden virker.
 
 **4. Konfigurasjon (valgfritt)**
 Siden virker uten. Vil du ha riktig adresse når siden deles, kopier `config/config.example.php` til `config/config.php` i *Files*.
