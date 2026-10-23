@@ -1,11 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="14" fill="#14232A"/>
-  <g transform="translate(8 6) scale(.75)" fill="none" stroke="#F4F5F2" stroke-width="2.4" stroke-linecap="round">
+  <g transform="translate(8 6) scale(.75)" fill="none" stroke="#F4F5F2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
     <path d="M6 6 H58 L54 11 H10 Z" fill="#F4F5F2" stroke="none"/>
-    <path d="M13 11 C9 11 8 17 12 18 C15 19 16 15 13.5 14.5"/>
-    <path d="M51 11 C55 11 56 17 52 18 C49 19 48 15 50.5 14.5"/>
-    <path d="M17 30 C18 20 24 14 32 13 C40 14 46 20 47 30"/>
-    <path d="M24 30 C25 24 28 20 32 19 C36 20 39 24 40 30 M32 19 V30" stroke="#D2A066"/>
+    <path d="M13 11 C9 11 8 17 12 18 C15 19 16 15 13.5 14.5 M51 11 C55 11 56 17 52 18 C49 19 48 15 50.5 14.5"/>
+    <path d="M22.5 22 C22.5 17.5 25 14.8 26.5 14 C28 14.8 30.5 17.5 30.5 22 M33.5 22 C33.5 17.5 36 14.8 37.5 14 C39 14.8 41.5 17.5 41.5 22 M26.5 14 q-1.5 -.8 -2.6 .8 M37.5 14 q1.5 -.8 2.6 .8" stroke="#D2A066"/>
+    <path d="M18.5 24 C17 21 15.5 19 14 17.5 M45.5 24 C47 21 48.5 19 50 17.5" stroke-width="1.5"/>
+    <path d="M15.5 30 C15.5 25 18.5 22 21 21 C23.5 22 26.5 25 26.5 30 M26.5 30 C26.5 25 29.5 22 32 21 C34.5 22 37.5 25 37.5 30 M37.5 30 C37.5 25 40.5 22 43 21 C45.5 22 48.5 25 48.5 30 M21 21 q-2 -.8 -3 1.2 M43 21 q2 -.8 3 1.2"/>
+    <path d="M21 23.5 V29 M32 23.5 V29 M43 23.5 V29" stroke-width="1.5"/>
     <path d="M16 30 H48 M18 33 H46" stroke-linecap="butt"/>
     <path d="M21 33 V62 M43 33 V62 M27 36 V60 M32 36 V60 M37 36 V60"/>
     <path d="M17 62 H47 M14 66 H50" stroke-linecap="butt"/>
