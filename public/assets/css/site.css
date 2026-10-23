@@ -40,7 +40,7 @@ body {
 }
 
 .brand-mark {
-    width: clamp(88px, 16vw, 140px);
+    width: clamp(120px, 22vw, 196px);
     height: auto;
 }
 
